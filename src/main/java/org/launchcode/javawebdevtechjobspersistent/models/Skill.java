@@ -1,8 +1,10 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
@@ -10,7 +12,12 @@ public class Skill extends AbstractEntity {
     @Size(max = 255)
     private String description;
 
-    public Skill() { }
+    @ManyToMany(mappedBy="skills")
+    private List<Job> jobs;
+
+    public Skill() {
+    }
+
     public Skill(String description) { this.description = description; }
 
     public String getDescription() {
